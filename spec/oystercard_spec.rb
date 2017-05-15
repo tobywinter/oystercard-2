@@ -15,7 +15,11 @@ describe Oystercard do
     end
 
     it "errors if a maximum balance is reached" do
-      expect { oystercard.top_up(91) }.to raise_error "Cannot top_up above #{oystercard.class::Maximum_balance}"
+      expect{ oystercard.top_up(91) }.to raise_error "Cannot top_up above #{oystercard.class::Maximum_balance}"
+    end
+
+    it "Decreases the balance when deduct_fare is called" do
+      expect{oystercard.deduct_fare(10)}.to change{ oystercard.balance }.by -10
     end
 
   end

@@ -16,3 +16,6 @@ oystercard.balance
 
 # 3 allows user to top up
 oystercard.top_up(10)
+
+# 4 allows fare to be deducted
+oystercard.deduct(10)
