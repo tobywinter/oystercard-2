@@ -5,6 +5,7 @@ class Oystercard
 
   def initialize
     @balance = 0
+    @in_journey = :ready_to_use
   end
 
   def top_up(amount)
@@ -14,6 +15,18 @@ class Oystercard
 
   def deduct_fare(fare)
     @balance -= fare
+  end
+
+  def in_journey?
+    @in_journey == :in_journey
+  end
+
+  def touch_in
+    @in_journey = :in_journey
+  end
+
+  def touch_out
+    @in_journey = :ready_to_use
   end
 
 end

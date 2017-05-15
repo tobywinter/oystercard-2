@@ -21,6 +21,21 @@ describe Oystercard do
     it "Decreases the balance when deduct_fare is called" do
       expect{oystercard.deduct_fare(10)}.to change{ oystercard.balance }.by -10
     end
+  end
 
+  describe '#in_journey?' do
+    it "initializes oystercards with a default value of 'ready_to_use'" do
+      expect(oystercard.in_journey?).to eq false
+    end
+
+    it "shows the oystercard as in_journey after touch_in" do
+      oystercard.touch_in
+      expect(oystercard.in_journey?).to eq true
+    end
+
+    it "shows the oystercard as !in_journey after touch_out" do
+      oystercard.touch_out
+      expect(oystercard.in_journey?).to eq false
+    end
   end
 end
