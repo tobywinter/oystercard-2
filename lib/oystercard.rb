@@ -1,7 +1,6 @@
 require_relative 'station'
 class Oystercard
 
-#hello alex
   attr_reader :balance, :entry_station, :journey_log
 
   Maximum_balance = 90
