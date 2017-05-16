@@ -19,7 +19,7 @@ describe Oystercard do
     end
 
     it "Decreases the balance when deduct_fare is called" do
-      expect{oystercard.deduct_fare(10)}.to change{ oystercard.balance }.by -10
+      expect{oystercard.touch_out(oystercard.class::Minimum_fare)}.to change{ oystercard.balance }.by -1
     end
   end
 
@@ -39,8 +39,12 @@ describe Oystercard do
     end
 
     it "shows the oystercard as !in_journey after touch_out" do
-      oystercard.touch_out
+      oystercard.touch_out(0)
       expect(oystercard.in_journey?).to eq false
+    end
+
+    it "Charges the card the fare upon touch out" do
+      expect {oystercard.touch_out(oystercard.class::Minimum_fare)}.to change{oystercard.balance}.by(-oystercard.class::Minimum_fare)
     end
   end
 end
