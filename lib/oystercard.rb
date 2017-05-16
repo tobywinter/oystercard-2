@@ -1,5 +1,6 @@
 class Oystercard
 
+
   attr_reader :balance
   Maximum_balance = 90
 
@@ -22,6 +23,7 @@ class Oystercard
   end
 
   def touch_in
+    fail "Insufficient funds" if @balance < 1
     @in_journey = :in_journey
   end
 
