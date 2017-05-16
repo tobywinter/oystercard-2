@@ -4,12 +4,14 @@ class Oystercard
 
   attr_reader :balance
   attr_reader :in_journey
+  attr_reader :entry_station
 
   MAXIMUM_BALANCE = 90
 
   def initialize(balance = 0)
     @balance = balance
     @in_journey = false
+    @entry_station = nil
   end
 
   def top_up(num)
@@ -18,11 +20,13 @@ class Oystercard
     self
   end
 
-  def touch_in
+  def touch_in(station)
     fail "Balance below minimum fare" if @balance < Fare::MIN_FARE
     @in_journey = true
+    @entry_station = station
     self
   end
+
 
   def touch_out
     @in_journey = false

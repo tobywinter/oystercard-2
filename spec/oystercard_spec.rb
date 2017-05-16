@@ -41,27 +41,34 @@ describe Oystercard do
   describe '#touch_in' do
     it 'can touch in'do
     card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
-    card.touch_in
+    card.touch_in("station")
     expect(card.in_journey).to eq true
     end
 
     it 'raises an error when balance below minimum fare' do
-      expect{ subject.touch_in}.to raise_error "Balance below minimum fare"
+      expect{ subject.touch_in "station"}.to raise_error "Balance below minimum fare"
     end
+
+    it 'records the touch_in station' do
+      card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
+      card.touch_in("Acton")
+      expect(card.entry_station).to eq "Acton"
+    end
+
   end
 
   it { is_expected.to respond_to(:touch_out) }
   describe '#touch_out' do
     it 'can touch out' do
     card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
-    card.touch_in
+    card.touch_in("station")
     card.touch_out
     expect(card.in_journey).to eq false
     end
 
     it 'deduct minimun fare' do
       subject.top_up(40)
-      expect{ subject.touch_in.touch_out }.to change{ subject.balance }.by(-Fare::MIN_FARE)
+      expect{ subject.touch_in("station").touch_out }.to change{ subject.balance }.by(-Fare::MIN_FARE)
     end
   end
 
