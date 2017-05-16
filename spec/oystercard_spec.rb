@@ -60,5 +60,11 @@ describe Oystercard do
       oystercard.touch_out(oystercard.class::Minimum_fare)
       expect(oystercard.entry_station).to eq nil
     end
+    it "Return a log of our journeys" do
+      oystercard.top_up(10)
+        oystercard.touch_in(station)
+        oystercard.touch_out(oystercard.class::Minimum_fare)
+      expect(oystercard.journey_log).to eq [{entry_station: :station, exit_station: :station}]
+      end
+    end
   end
-end
