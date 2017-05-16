@@ -41,18 +41,26 @@ describe Oystercard do
 
   describe '#touch_in' do
     it 'can touch in'do
-    subject.touch_in
-    expect(subject.in_journey).to eq true
+    card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
+    card.touch_in
+    expect(card.in_journey).to eq true
+    end
+
+    it 'raises an error when balance below minimum fare' do
+      expect{ subject.touch_in}.to raise_error "Balance below minimum fare"
     end
   end
 
   it { is_expected.to respond_to(:touch_out) }
   describe '#touch_out' do
     it 'can touch out' do
-    subject.touch_in
-    subject.touch_out
-    expect(subject.in_journey).to eq false
+    card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
+    card.touch_in
+    card.touch_out
+    expect(card.in_journey).to eq false
     end
   end
+
+
 
 end

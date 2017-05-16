@@ -5,8 +5,8 @@ class Oystercard
 
   MAXIMUM_BALANCE = 90
 
-  def initialize
-    @balance = 0
+  def initialize(balance = 0)
+    @balance = balance
     @in_journey = false
   end
 
@@ -21,6 +21,7 @@ class Oystercard
   end
 
   def touch_in
+    fail "Balance below minimum fare" if @balance < Fare::MIN_FARE
     @in_journey = true
   end
 
