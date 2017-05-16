@@ -18,6 +18,7 @@ class Oystercard
     self
   end
 
+
   def touch_in(station)
     fail "Balance below minimum fare" if @balance < Fare::MIN_FARE
     @entry_station = station
