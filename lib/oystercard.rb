@@ -1,7 +1,7 @@
 require_relative 'station'
 class Oystercard
 
-#
+#hello alex
   attr_reader :balance, :entry_station
   Maximum_balance = 90
   Minimum_fare = 1
