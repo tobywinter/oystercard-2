@@ -43,9 +43,9 @@ describe Oystercard do
   it { is_expected.to respond_to(:touch_in) }
 
   describe '#touch_in' do
-    it 'can touch in'do
+    it 'can touch in' do
     card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
-    card.touch_in(:fakestation)
+    card.touch_in(:entry_station)
     expect(card.in_journey?).to eq true
     end
 
@@ -86,5 +86,18 @@ describe Oystercard do
       expect(card.exit_station).to eq :exit_station
     end
 
+  end
+
+  describe "#Journies" do
+    it 'Tests that the card has list of empty journies when created' do
+      card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
+      expect(card.journies).to eq []
+    end
+    it 'tests that checks that touching in and out creates one journey' do
+      card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
+      card.touch_in(:entry_station)
+      card.touch_out(:exit_station)
+      expect(card.journies).to eq [{entry_station: :entry_station, exit_station: :exit_station}]
+    end
   end
 end
