@@ -1,16 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
-<<<<<<< HEAD
     ast (2.3.0)
     diff-lcs (1.3)
     parser (2.4.0.0)
       ast (~> 2.2)
     powerpack (0.1.1)
     rainbow (2.2.1)
-=======
-    diff-lcs (1.3)
->>>>>>> fd6e3210e65140fe9aac396bf2fe6d2206107363
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
       rspec-expectations (~> 3.6.0)
@@ -24,7 +20,6 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
-<<<<<<< HEAD
     rubocop (0.48.1)
       parser (>= 2.3.3.1, < 3.0)
       powerpack (~> 0.1)
@@ -33,25 +28,16 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
     unicode-display_width (1.2.1)
-=======
->>>>>>> fd6e3210e65140fe9aac396bf2fe6d2206107363
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-<<<<<<< HEAD
   rspec (= 3.6.0)
   rubocop (= 0.48.1)
 
 RUBY VERSION
    ruby 2.4.0p0
-=======
-  rspec
-
-RUBY VERSION
-   ruby 2.4.1p111
->>>>>>> fd6e3210e65140fe9aac396bf2fe6d2206107363
 
 BUNDLED WITH
    1.14.6
