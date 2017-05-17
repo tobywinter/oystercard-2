@@ -19,6 +19,3 @@ oystercard.top_up(10)
 
 # 4 allows fare to be deducted
 oystercard.deduct_fare(10)
-
-# 5 allows oystercard to touch_in
-oystercard.touch_in

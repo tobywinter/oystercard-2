@@ -5,6 +5,7 @@ class Oystercard
 
   Maximum_balance = 90
   Minimum_fare = 1
+  Penalty_fare = 6
 
   def initialize
     @balance = 0
@@ -28,7 +29,8 @@ class Oystercard
 
   def touch_out(fare = Minimum_fare, station)
     deduct_fare(fare)
-    @journey_log << {entry_station: @entry_station, exit_station: station}
+    @exit_station = station
+    record_journey
     @entry_station = nil
   end
 
@@ -36,6 +38,10 @@ class Oystercard
 
   def deduct_fare(fare)
     @balance -= fare
+  end
+
+  def record_journey
+    @journey_log << Journey.new(@entry_station, @exit_station).log
   end
 
 end
