@@ -2,14 +2,14 @@ require_relative 'fare'
 
 class Oystercard
 
-  attr_reader :balance
-  attr_reader :entry_station
+  attr_reader :balance, :entry_station, :exit_station
 
   MAXIMUM_BALANCE = 90
 
   def initialize(balance = 0)
     @balance = balance
     @entry_station = nil
+    @exit_station = nil
   end
 
   def top_up(num)
@@ -25,9 +25,10 @@ class Oystercard
     self
   end
 
-  def touch_out
+  def touch_out(station)
     deduct(Fare::MIN_FARE)
     @entry_station = nil
+    @exit_station = station
     self
   end
 

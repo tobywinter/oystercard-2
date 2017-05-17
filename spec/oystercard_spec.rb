@@ -2,7 +2,8 @@ require 'oystercard'
 
 describe Oystercard do
 
-  let(:fakestation) { double(:station) }
+  let(:entry_station) { double(:station) }
+  let(:exit_station) { double(:station) }
 
   it 'expects balance to be 0' do
     expect(subject.balance).to eq (0)
@@ -26,7 +27,7 @@ describe Oystercard do
   describe '#deduct' do
     it 'deducts fare from the balance' do
       subject.top_up(20)
-      subject.touch_out
+      subject.touch_out(:exit_station)
       expect(subject.balance).to eq 20 - Fare::MIN_FARE
     end
   end
@@ -49,13 +50,13 @@ describe Oystercard do
     end
 
     it 'raises an error when balance below minimum fare' do
-      expect{ subject.touch_in (:fakestation)}.to raise_error "Balance below minimum fare"
+      expect{ subject.touch_in (:entry_station)}.to raise_error "Balance below minimum fare"
     end
 
     it 'records the touch_in station' do
       card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
-      card.touch_in(:fakestation)
-      expect(card.entry_station).to eq (:fakestation)
+      card.touch_in(:entry_station)
+      expect(card.entry_station).to eq (:entry_station)
     end
 
   end
@@ -64,19 +65,26 @@ describe Oystercard do
   describe '#touch_out' do
     it 'can touch out' do
     card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
-    card.touch_in(:fakestation)
-    card.touch_out
+    card.touch_in(:entry_station)
+    card.touch_out(:exit_station)
     expect(card.in_journey?).to eq false
     end
 
     it 'deduct minimun fare' do
       subject.top_up(40)
-      expect{ subject.touch_in(:fakestation).touch_out }.to change{ subject.balance }.by(-Fare::MIN_FARE)
+      expect{ subject.touch_in(:entry_station).touch_out(:exit_station) }.to change{ subject.balance }.by(-Fare::MIN_FARE)
     end
 
     it 'forgets the entry station upon #touch_out' do
       card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
-      expect(card.touch_in(:fakestation).touch_out.entry_station).to eq nil
+      expect(card.touch_in(:entry_station).touch_out(:exit_station).entry_station).to eq nil
     end
+
+    it 'saves the exit station' do
+      card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
+      card.touch_out(:exit_station)
+      expect(card.exit_station).to eq :exit_station
+    end
+
   end
 end
