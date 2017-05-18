@@ -1,8 +1,8 @@
 require 'station'
 
 describe Station do
-  subject(:station) {described_class.new(:zone, :station_name)}
-  # zone, name
+  subject(:station) {described_class.new(:station_name, :zone)}
+  # name, zone
   describe '#zone' do
     it 'returns the station zone' do
       expect(station.zone).to eq :zone

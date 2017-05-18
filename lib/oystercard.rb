@@ -1,4 +1,6 @@
 require_relative 'fare'
+require_relative 'journey'
+require_relative 'station'
 
 class Oystercard
 
@@ -33,7 +35,7 @@ class Oystercard
     @entry_station = nil
     self
   end
-  
+
   def in_journey?
     !!entry_station
   end

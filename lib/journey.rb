@@ -6,6 +6,9 @@ class Journey
 
   def initialize
       @penalty_charge = PENALTY_CHARGE
-
   end
+
+  def start 
+  end
+
 end
