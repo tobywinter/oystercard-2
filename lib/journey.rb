@@ -26,6 +26,10 @@ class Journey
     end
   end
 
+  def calculate_fare
+    @fare = calculate_distance * Fare::FARE_PER_ZONE
+  end
+
   private
   def zone_comparison
     @entry_zone <=> @exit_zone

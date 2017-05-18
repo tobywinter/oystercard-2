@@ -1,6 +1,6 @@
 require 'journey'
 require 'station'
-
+require 'fare'
 
 describe Journey do
   subject(:journey) {described_class.new}
@@ -39,6 +39,15 @@ describe Journey do
       journey.start(station1)
       journey.finish(station2)
       expect(journey.calculate_distance). to eq(6)
+    end
+  end
+
+  describe '#calculate_fare' do
+    it 'calculates fare based on journey distance' do
+      journey.start(station1)
+      journey.finish(station2)
+      distance = journey.calculate_distance
+      expect(journey.calculate_fare).to eq(distance * Fare::FARE_PER_ZONE)
     end
   end
 end
