@@ -1,7 +1,7 @@
 
 
 class Journey
-  attr_reader :penalty_charge, :entry_station, :entry_zone, :exit_station
+  attr_reader :penalty_charge, :entry_station, :entry_zone, :exit_station, :exit_zone
   PENALTY_CHARGE = 10
 
   def initialize
@@ -15,6 +15,7 @@ class Journey
 
   def finish(exit_station)
     @exit_station = exit_station.station_name
+    @exit_zone = exit_station.zone
   end
 
 end
