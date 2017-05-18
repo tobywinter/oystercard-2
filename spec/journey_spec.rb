@@ -33,4 +33,12 @@ describe Journey do
       expect{ journey.finish(station2) }.to change{ journey.exit_zone}.to eq(6)
     end
   end
+
+  describe '#calculate_distance' do
+    it 'calculate distance between entry and exit zone' do
+      journey.start(station1)
+      journey.finish(station2)
+      expect(journey.calculate_distance). to eq(6)
+    end
+  end
 end

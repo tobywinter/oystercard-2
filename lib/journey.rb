@@ -18,4 +18,12 @@ class Journey
     @exit_zone = exit_station.zone
   end
 
+  def calculate_distance
+    if (@entry_zone <=> @exit_zone) == -1
+      (exit_zone - entry_zone) + 1
+    else (@entry_zone <=> @exit_zone) == 1
+      (entry_zone - exit_zone) + 1
+    end
+  end
+
 end
