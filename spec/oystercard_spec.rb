@@ -4,7 +4,7 @@ describe Oystercard do
 
   subject(:card) {described_class.new(50)}
 
-  let(:entry_station) { double(:station) }
+  let(:entry_station) {double(:entry_station)} 
   let(:exit_station) { double(:station) }
 
   it 'expects balance to be 0' do
