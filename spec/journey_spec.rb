@@ -18,5 +18,15 @@ describe Journey do
     it 'saves entry station as instance variable' do
       expect{ journey.start(station1) }.to change{ journey.entry_station }.to eq('Bank')
     end
+
+    it 'saves entry zone as instance variable' do
+      expect{ journey.start(station1) }.to change{ journey.entry_zone }.to eq(1)
+    end
+  end
+
+  describe '#finish' do
+    it 'saves exit station as instance variable' do
+      expect{ journey.finish(station2) }.to change{ journey.exit_station}.to eq('Kingston')
+    end
   end
 end
