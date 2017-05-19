@@ -24,7 +24,7 @@ class Journey
   end
 
   def calculate_fare
-    return @fare = PENALTY_CHARGE if ( entry_station == nil || exit_station == nil )
+    return @fare = PENALTY_CHARGE if entry_station == nil || exit_station == nil
     @fare = calculate_distance * Fare::FARE_PER_ZONE
   end
 

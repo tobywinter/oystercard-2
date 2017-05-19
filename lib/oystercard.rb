@@ -32,13 +32,16 @@ class Oystercard
     station = Station.new(station_name)
     @journey.finish(station)
     deduct(@journey.calculate_fare)
-    @journey_log << @journey
-    @last_journey = @journey
-    @journey = Journey.new
-    self
+    save_journey_to_list
   end
 
   private
+
+  def save_journey_to_list
+    @last_journey = @journey
+    @journey_log << @journey
+    @journey = Journey.new
+  end
 
   def deduct(num)
     #balance can go below 0?
