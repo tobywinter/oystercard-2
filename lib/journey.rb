@@ -20,11 +20,7 @@ class Journey
   end
 
   def calculate_distance
-    if zone_comparison == -1
-      (exit_zone - entry_zone) + 1
-    else zone_comparison == 1
-      (entry_zone - exit_zone) + 1
-    end
+    (entry_zone - exit_zone).abs + 1
   end
 
   def calculate_fare
