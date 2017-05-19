@@ -53,4 +53,11 @@ describe Journey do
     end
   end
 
+  describe '#in_progress' do
+    it 'returns true if journey has started' do
+      journey.start(station1)
+      expect(journey.in_progress?).to be true
+    end
+  end
+
 end

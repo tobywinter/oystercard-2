@@ -33,6 +33,7 @@ describe Oystercard do
     it 'deducts fare from the balance' do
       card = described_class.new(0)
       card.top_up(20)
+      card.touch_in(:entry_station)
       card.touch_out(:exit_station)
       expect(card.balance).to eq 20 - Fare::MIN_FARE
     end
@@ -60,21 +61,21 @@ describe Oystercard do
 
     it 'adds a journey to the journeys list' do
       card.touch_out(:exit_station)
-      expect{ card.touch_out(:exit_station) }.to change{ card.journies.length }.by(+1)
+      expect{ card.touch_out(:exit_station) }.to change{ card.journey_log.length }.by(+1)
     end
 
   end
 
-  describe "#Journies" do
+  describe "#journey_log" do
     it 'Tests that the card has list of empty journies when created' do
       # card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
-      expect(card.journies).to eq []
+      expect(card.journey_log).to eq []
     end
     it 'tests that checks that touching in and out creates one journey' do
       # card = Oystercard.new(Oystercard::MAXIMUM_BALANCE)
       card.touch_in(:entry_station)
       card.touch_out(:exit_station)
-      expect(card.journies).to eq [card.journey]
+      expect(card.journey_log).to eq [card.last_journey]
     end
   end
 end

@@ -2,7 +2,7 @@
 
 class Journey
   attr_reader :penalty_charge, :entry_station, :entry_zone, :exit_station, :exit_zone
-  PENALTY_CHARGE = 10
+  PENALTY_CHARGE = 6
 
   def initialize
     @entry_station
@@ -28,9 +28,7 @@ class Journey
     @fare = calculate_distance * Fare::FARE_PER_ZONE
   end
 
-  private
-  def zone_comparison
-    @entry_zone <=> @exit_zone
+  def in_progress?
+    !!@entry_station
   end
-
 end
