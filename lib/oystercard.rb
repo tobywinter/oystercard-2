@@ -23,6 +23,7 @@ class Oystercard
 
   def touch_in(station_name)
     fail "Balance below minimum fare" if @balance < Fare::MIN_FARE
+    finish_journey if journey.in_progress?
     station = Station.new(station_name)
     @journey.start(station)
     self
@@ -31,8 +32,7 @@ class Oystercard
   def touch_out(station_name)
     station = Station.new(station_name)
     @journey.finish(station)
-    deduct(@journey.calculate_fare)
-    save_journey_to_list
+    finish_journey
   end
 
   private
@@ -47,6 +47,11 @@ class Oystercard
     #balance can go below 0?
     @balance -= num
     self
+  end
+
+  def finish_journey
+    deduct(@journey.calculate_fare)
+    save_journey_to_list
   end
 
 end
