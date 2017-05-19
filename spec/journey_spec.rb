@@ -11,7 +11,9 @@ describe Journey do
 
 
   it 'it has penalty charge' do
-    expect(journey.penalty_charge).to eq Journey::PENALTY_CHARGE
+    journey.start(station1)
+    journey.start(station2)
+    expect(journey.calculate_fare).to eq Journey::PENALTY_CHARGE
   end
 
   describe '#start' do
@@ -50,4 +52,5 @@ describe Journey do
       expect(journey.calculate_fare).to eq(distance * Fare::FARE_PER_ZONE)
     end
   end
+
 end

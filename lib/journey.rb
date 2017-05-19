@@ -5,7 +5,8 @@ class Journey
   PENALTY_CHARGE = 10
 
   def initialize
-      @penalty_charge = PENALTY_CHARGE
+    @entry_station
+    @exit_station
   end
 
   def start(entry_station)
@@ -27,6 +28,7 @@ class Journey
   end
 
   def calculate_fare
+    return @fare = PENALTY_CHARGE if ( entry_station == nil || exit_station == nil )
     @fare = calculate_distance * Fare::FARE_PER_ZONE
   end
 
